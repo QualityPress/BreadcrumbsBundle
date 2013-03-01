@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <parameters>
+        <parameter key="qp.breadcrumbs.extension.class">QualityPress\Bundle\BreadcrumbsBundle\Twig\Extension\BreadcrumbsExtension</parameter>
+    </parameters>
+    
+    <services>
+        <service id="qp_breadcrumbs.builder" class="%quality_press.breadcrumbs.builder%" public="true">
+            <argument>%quality_press.breadcrumbs.class%</argument>
+        </service>
+        
+        <service id="qp_breadcrumbs.handler" class="%quality_press.breadcrumbs.handler%" public="true">
+            <argument type="service"    id="service_container" />
+            <argument>%quality_press.breadcrumbs.template%</argument>
+            <argument>%quality_press.breadcrumbs.options%</argument>
+        </service>
+        
+        <service id="twig.extension.qp_breacrumbs" class="%qp.breadcrumbs.extension.class%" public="false">
+            <argument type="service" id="qp_breadcrumbs.handler" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+    
+</container>

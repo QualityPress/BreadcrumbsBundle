@@ -1,0 +1,29 @@
+{
+    "name": "quality-press/breadcrumbs-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony BreadcrumbsBundle",
+    "keywords": ["breadcrumb"],
+    "homepage": "http://www.qualitypress.com.br",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge Vahldick",
+            "email": "jvahldick@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1,<2.3-dev"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-0": { "QualityPress\\Bundle\\BreadcrumbsBundle": "" }
+    },
+    "target-dir": "QualityPress/Bundle/BreadcrumbsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{% block breadcrumbs %}
+    {% if qp_breadcrumbs_get()|length %}
+        {% spaceless %}
+            <ul {% for attrname,attrvalue in options.attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+                {% for breadcrumb in breadcrumbs %}
+                    {% set listItemAttr = breadcrumb.options.attr %}
+                    {% if loop.first %}
+                        {% set listItemAttr = (listItemAttr.class is defined) ? listItemAttr|merge({ class: listItemAttr.class ~ ' first' }) : listItemAttr|merge({ class: 'first' }) %}
+                    {% endif %}
+                    {% if loop.last %}
+                        {% set listItemAttr = (listItemAttr.class is defined) ? listItemAttr|merge({ class: listItemAttr.class ~ ' last' }) : listItemAttr|merge({ class: 'last' }) %}
+                    {% endif %}
+                    
+                    <li {% for attrname,attrvalue in listItemAttr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+                        {% if breadcrumb.link %}
+                            <a href="{{ breadcrumb.link }}" {% for attrname,attrvalue in breadcrumb.options.linkAttr %} {{attrname}}="{{ attrvalue|trans({}, options.translationDomain) }}"{% endfor %}>
+                                {{ breadcrumb.name|trans({}, options.translationDomain) }}
+                            </a>
+                        {% else %}
+                            {{ breadcrumb.name|trans({}, options.translationDomain) }}
+                        {% endif %}
+                    </li>
+                    
+                    {% if options.separator and not loop.last %}
+                        <li><span class='separator'>{{ options.separator }}</span></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endspaceless %}
+    {% endif %}
+{% endblock %}
