@@ -1,0 +1,4 @@
+BreadcrumbBundle
+================
+
+Easy breadcrumbs generator
